@@ -1,0 +1,28 @@
+ul {
+padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.languages {
+  display: flex;
+  justify-content: center;
+}
+
+.languages li {
+  cursor: pointer;
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+  margin: 10px;
+}
+
+li.active {
+color: red;
+}
