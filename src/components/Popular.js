@@ -1,6 +1,8 @@
 const PropTypes = require('prop-types');
 const React = require('react');
 
+const { fetchPopularRepos } = require('../utils/api');
+
 /**
  * Select Language Component
  *
@@ -29,20 +31,62 @@ SelectLanguage.propTypes = {
   onSelect: PropTypes.func.isRequired
 };
 
+const RepoGridItem = ({ html_url, index, name, owner, stargazers_count }) => {
+  return (
+    <li className="popular-item">
+      <div className="popular-rank">#{index + 1}</div>
+      <ul className="space-list-items">
+        <li>
+          <img className="avatar" src={owner.avatar_url} alt={owner.login} />
+        </li>
+        <li><a href={html_url}>{name}</a></li>
+        <li>@{owner.login}</li>
+        <li>{stargazers_count} stars</li>
+      </ul>
+    </li>
+  );
+};
+
+const RepoGrid = ({ repos }) => {
+  return (
+    <ul className="popular-list">
+      {repos.map((repo, index) => (
+        <RepoGridItem key={index} index={index} {...repo} />
+      ))}
+    </ul>
+  );
+};
+
 class Popular extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      selectedLanguage: 'All'
+      selectedLanguage: 'All',
+      repos: null
     };
     this.updateLanguage = this.updateLanguage.bind(this);
+    this._updateRepos = this._updateRepos.bind(this);
+  }
+
+  _updateRepos(repos) {
+    this.setState({
+      repos: repos
+    });
+  }
+
+  componentDidMount() {
+    this.updateLanguage(this.state.selectedLanguage);
   }
 
   updateLanguage(language) {
     this.setState({
-      selectedLanguage: language
+      selectedLanguage: language,
+      repos: null
     });
+
+    fetchPopularRepos(language)
+      .then(this._updateRepos);
   }
 
   render() {
@@ -54,6 +98,7 @@ class Popular extends React.Component {
           languages={languages}
           selectedLanguage={this.state.selectedLanguage}
           onSelect={this.updateLanguage} />
+        {this.state.repos && <RepoGrid repos={this.state.repos} />}
       </div>
     );
   }
