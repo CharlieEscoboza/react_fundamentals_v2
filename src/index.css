@@ -46,3 +46,8 @@ color: red;
   width: 150px;
   border-radius: 50%;
 }
+
+.popular-rank {
+  font-size: 20px;
+  margin: 20px;
+}

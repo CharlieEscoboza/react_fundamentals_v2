@@ -3,6 +3,8 @@ const React = require('react');
 
 const { fetchPopularRepos } = require('../utils/api');
 
+import Loading from './Loading';
+
 /**
  * Select Language Component
  *
@@ -62,8 +64,7 @@ class Popular extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedLanguage: 'All',
-      repos: null
+      selectedLanguage: 'All'
     };
     this.updateLanguage = this.updateLanguage.bind(this);
     this._updateRepos = this._updateRepos.bind(this);
@@ -98,7 +99,9 @@ class Popular extends React.Component {
           languages={languages}
           selectedLanguage={this.state.selectedLanguage}
           onSelect={this.updateLanguage} />
-        {this.state.repos && <RepoGrid repos={this.state.repos} />}
+        {!this.state.repos ?
+          <Loading /> :
+          <RepoGrid repos={this.state.repos} />}
       </div>
     );
   }

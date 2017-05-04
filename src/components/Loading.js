@@ -8,6 +8,7 @@ class Loading extends React.Component {
       text: ''
     };
     this.counter = null;
+    this.updateText = this.updateText.bind(this);
   }
 
   updateText() {
@@ -27,14 +28,16 @@ class Loading extends React.Component {
       this.props.speed);
   }
 
-  componentWillUnMount() {
+  componentWillUnmount() {
     clearInterval(this.counter);
   }
 
   render() {
-    <div>
-      {`${this.props.message}${this.state.text}`}
-    </div>
+    return (
+      <div>
+        {`${this.props.message}${this.state.text}`}
+      </div>
+    );
   }
 }
 
@@ -43,4 +46,4 @@ Loading.defaultProps = {
   speed: 300
 };
 
-module.exports = Loading;
+export default Loading;
