@@ -107,4 +107,4 @@ class Popular extends React.Component {
   }
 }
 
-export default Popular;
+module.exports = Popular;
