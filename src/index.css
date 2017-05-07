@@ -97,3 +97,46 @@ a {
 .button:active {
   transform: translateY(1px);
 }
+
+.form-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.form-input {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.form-wrapper {
+  text-align: center;
+}
+
+.btn-submit {
+  background-color: #000;
+  border: 0;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 24px;
+  padding: 5px 25px;
+}
+
+.header {
+  display: inline-block;
+  font-size: 30px;
+  font-weight: 200;
+  margin-bottom: 10px;
+}
+
+.reset {
+  background: transparent;
+  border: 0;
+  color: #d0021b;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.reset:hover {
+  cursor: pointer;
+}

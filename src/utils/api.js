@@ -8,5 +8,13 @@ module.exports = {
             .then(function (response) {
               return response.data.items;
             });
+  },
+  fetchUser: function (username) {
+    const encodeURI = window.encodeURI(`https://api.github.com/users/${username}`);
+
+    return axios.get(encodeURI)
+            .then(function (response) {
+              return response.data;
+            })
   }
 };
