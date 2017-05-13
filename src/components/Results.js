@@ -39,14 +39,14 @@ class Results extends React.Component {
       <div className="row">
         {winner && (
           <div className="column">
-            <h3>Winner</h3>
-            <UserProfile {...winner.profile} />
+            <h2>Winner</h2>
+            <UserProfile {...winner.profile} score={winner.score} />
           </div>
         )}
         {loser && (
           <div className="column">
-            <h3>Loser</h3>
-            <UserProfile {...loser.profile} />
+            <h2>Loser</h2>
+            <UserProfile {...loser.profile} score={loser.score} />
           </div>
         )}
         { !loser && !winner && <Loading />}

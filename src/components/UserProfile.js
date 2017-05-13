@@ -11,10 +11,12 @@ const UserProfile = ({
   location,
   login,
   name,
-  public_repos
+  public_repos,
+  score
 }) => (
   <PlayerPreview
   avatar={avatar_url}
+  label={score ? `Score: ${score}` : ''}
   username={login} >
     <ul className="space-list-items">
       {name && <li>{name}</li>}
