@@ -3,7 +3,7 @@ const React = require('react');
 
 const { fetchPopularRepos } = require('../utils/api');
 
-import Loading from './Loading';
+const Loading = require('./Loading');
 
 /**
  * Select Language Component

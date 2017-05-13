@@ -3,8 +3,6 @@ const { Link } = require('react-router-dom');
 const PlayerInput = require('./PlayerInput');
 const PlayerPreview = require('./PlayerPreview');
 
-const { fetchUser } = require('../utils/api');
-
 class Battle extends React.Component {
 
   constructor(props) {
@@ -43,10 +41,14 @@ class Battle extends React.Component {
               label="Player One"
               onSubmit={this.handleSubmit} /> :
               <PlayerPreview
-                id="playerOne"
                 avatar={this.state.playerOneImage}
-                username={this.state.playerOneName}
-                onReset={this.resetPlayer} />}
+                username={this.state.playerOneName}>
+                <button
+                  className="reset"
+                  onClick={this.resetPlayer.bind(null, "playerOne")} >
+                  Reset
+                </button>
+              </PlayerPreview>}
 
           {!this.state.playerTwoName ?
             <PlayerInput
@@ -54,10 +56,14 @@ class Battle extends React.Component {
               label="Player Two"
               onSubmit={this.handleSubmit} /> :
               <PlayerPreview
-                id="playerTwo"
                 avatar={this.state.playerTwoImage}
-                username={this.state.playerTwoName}
-                onReset={this.resetPlayer} />}
+                username={this.state.playerTwoName}>
+                <button
+                  className="reset"
+                  onClick={this.resetPlayer.bind(null, "playerTwo")} >
+                  Reset
+                </button>
+              </PlayerPreview>}
         </div>
         {this.state.playerOneName &&
           this.state.playerTwoName &&
